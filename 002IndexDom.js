@@ -47,7 +47,7 @@ li[1].textContent='Hello 2'
 li[1].style.fontWeight='bold'
 li[1].style.backgroundColor='Yellow'
 
-//***************givesError
+//givesError
 //items.style.backgroundColor='black';
 
 for(i of li){
@@ -59,7 +59,7 @@ for(i of li){
 
 //const header=document.querySelector('#main-header')
 //header.style.borderBottom='solid 4px black';
-
+/*
 const headerTitle=document.querySelector('#header-title');
 headerTitle.style.borderBottom='solid 3px black';
 
@@ -70,7 +70,7 @@ const title=document.querySelector('.title')
 //console.log(title)
 
 title.style.color='Green'
-/*
+
 const input=document.querySelector('input')
 //for tag we simply use tagName
 input.value='Hello World'
@@ -109,3 +109,9 @@ for(i of even){
     i.style.backgroundColor='brown'
 }
 */
+const li=document.getElementsByClassName('list-group-item')
+console.log(li)
+li[2].style.backgroundColor='Green'
+for(i of li){
+    i.style.fontWeight='Bold'
+}
