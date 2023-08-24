@@ -39,7 +39,7 @@ function addItem(e){
 
     //create Edit button Element
     const editBtn=document.createElement('Button');
-    editBtn.className='Btn';
+    editBtn.className='btn btn-sm  float-right info';
     editBtn.appendChild(document.createTextNode('Edit'));
 
     //add edit button to li
