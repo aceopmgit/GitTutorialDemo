@@ -1,3 +1,4 @@
+//******************Video JavaScript DOM Crash Course - Part 1*************************************************
 // Examining the document object
 //console.dir(document)
 //console.log(document.domain)
@@ -10,7 +11,7 @@
 //console.log(document.all);
 //console.log(document.forms)
 
-//*************getElementIdBy()
+//**************************************************************************getElementIdBy()
 /*
 //console.log(document.getElementById('header-title'))
 const headerTitle=document.getElementById('header-title')
@@ -22,7 +23,7 @@ console.log(headerTitle)
 headerTitle.style.borderBottom='solid 3px#000'
 */
 
-//**************getElementsByClassName()
+//********************************************************************************getElementsByClassName()
 /*
 const items=document.getElementsByClassName('list-group-item')
 console.log(items);
@@ -38,7 +39,7 @@ for(i of items){
 }
 */
 
-// **************getElementsByTagName
+// ************************************************************************************getElementsByTagName
 //works the same way as getElementsByClassName()
 /*
 const li=document.getElementsByTagName('li')
@@ -55,7 +56,7 @@ for(i of li){
 }
 */
 
-//****************querySelector
+//************************************************************************************querySelector
 
 //const header=document.querySelector('#main-header')
 //header.style.borderBottom='solid 4px black';
@@ -89,7 +90,7 @@ seconditem.style.color='violet'
 
 */
 
-//************ querySelectorAll
+//************************************************************************************ querySelectorAll
 /*
 const titles=document.querySelectorAll('.title')
 console.log(titles);
@@ -109,9 +110,97 @@ for(i of even){
     i.style.backgroundColor='brown'
 }
 */
-const li=document.getElementsByClassName('list-group-item')
-console.log(li)
-li[2].style.backgroundColor='Green'
-for(i of li){
-    i.style.fontWeight='Bold'
-}
+
+//***********************************video JavaScript DOM Crash Course - Part 2**************************************
+//Transversing the DOM
+const itemList=document.querySelector('#items')
+
+//****************************************************************parentNode
+/*
+console.log(itemList.parentNode);
+itemList.parentNode.style.backgroundColor='Pink';
+console.log(itemList.parentNode.parentNode);
+*/
+
+//*****************************************************************parentElement
+/*
+//Same as parentNode
+//Both can be used in place of each other
+console.log(itemList.parentElement)
+itemList.parentElement.style.backgroundColor='Pink';
+console.log(itemList.parentElement.parentElement);
+*/
+
+//******************************************************************childNodes
+//onsole.log(itemList.childNodes);
+//here text shown in output is line gap
+
+//*******************************************************************children
+//Instead of childNode it only gives us only elements ignoring line break and giving it as text
+/*
+console.log(itemList.children)
+//to get a paticular chlid at index 1
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor='yellow' 
+*/
+
+//*******************************************************************firstChild
+//console.log(itemList.firstChild);
+
+
+//******************************************************************firstElementChild
+//console.log(itemList.firstElementChild)
+//itemList.firstElementChild.textContent='Hello'
+
+
+//********************************************************************lastChild
+//console.log(itemList.lastChild)
+
+
+//********************************************************************lastElementChild
+//console.log(itemList.lastElementChild)
+//itemList.lastElementChild.textContent='Hello 4';
+
+
+//*********************************************************************nextSibling
+//console.log(itemList.nextSibling);
+
+
+//*********************************************************************nextElementSibling
+//console.log(itemList.nextElementSibling);
+
+
+//*********************************************************************previousSibling
+//console.log(itemList.previousSibling);
+
+
+//*********************************************************************previousElementChild
+//console.log(itemList.previousElementSibling)
+//itemList.previousElementSibling.style.color='green';
+
+
+//**********************************************************************Create Element
+
+//create a div
+const newDiv=document.createElement('div');
+
+//Add Class
+newDiv.className='hello'
+
+//Add id
+newDiv.id='hello 1';
+
+//Add Attribute
+newDiv.setAttribute('title','Hello Div')
+
+//createTextNode
+const newDivText=document.createTextNode('Hello World');
+
+//Add text to div
+newDiv.appendChild(newDivText);
+console.log(newDiv)
+const container=document.querySelector('header .container');
+const h1=document.querySelector('header h1')
+
+newDiv.style.fontSize='30px';
+container.insertBefore(newDiv,h1)
