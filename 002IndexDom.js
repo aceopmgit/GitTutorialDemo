@@ -109,9 +109,23 @@ for(i of even){
     i.style.backgroundColor='brown'
 }
 */
-const li=document.getElementsByClassName('list-group-item')
+/*const li=document.getElementsByClassName('list-group-item')
 console.log(li)
 li[2].style.backgroundColor='Green'
 for(i of li){
     i.style.fontWeight='Bold'
+}
+*/
+let liByClass=document.getElementsByClassName('list-group-item');
+console.log(liByClass)
+
+for(i of liByClass){
+    i.style.color='red'
+}
+
+let liByTagName=document.getElementsByTagName('li')
+console.log(liByTagName)
+
+for(let i of liByTagName){
+    i.style.backgroundColor='tomato';
 }
