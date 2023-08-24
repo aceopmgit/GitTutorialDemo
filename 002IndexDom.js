@@ -132,7 +132,7 @@ console.log(itemList.parentElement.parentElement);
 */
 
 //******************************************************************childNodes
-//onsole.log(itemList.childNodes);
+//console.log(itemList.childNodes);
 //here text shown in output is line gap
 
 //*******************************************************************children
@@ -180,7 +180,7 @@ itemList.children[1].style.backgroundColor='yellow'
 
 
 //**********************************************************************Create Element
-
+/*
 //create a div
 const newDiv=document.createElement('div');
 
@@ -204,3 +204,5 @@ const h1=document.querySelector('header h1')
 
 newDiv.style.fontSize='30px';
 container.insertBefore(newDiv,h1)
+
+*/
