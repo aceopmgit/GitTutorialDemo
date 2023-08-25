@@ -1,6 +1,7 @@
 const button=document.getElementById('button')
 button.addEventListener('click',submitUser)
-let itemList=document.getElementById('items')
+const itemList=document.getElementById('items')
+itemList.addEventListener('click',removeInfo)
 
 function submitUser(e){
     e.preventDefault()
@@ -22,6 +23,19 @@ function submitUser(e){
     //Adding TextNode to li
     li.appendChild(document.createTextNode(combineT));
 
+    //creating button element
+    const delbtn=document.createElement('button');
+    
+    //adding class to button
+    delbtn.className='btn btn-sm float-right delete'
+    delbtn.style.backgroundColor='Tomato'
+
+    //Adding textNode
+    delbtn.appendChild(document.createTextNode('Delete'));
+
+    //Adding delete button to li
+    li.appendChild(delbtn);
+
     //Adding li to itemList
     itemList.appendChild(li);
 
@@ -33,8 +47,27 @@ function submitUser(e){
     }
     const details_serialised=JSON.stringify(details)
     localStorage.setItem(tEmail,details_serialised);
-    console.log(localStorage)
+    //console.log(localStorage)
 
+    
+
+}
+
+function removeInfo(e){
+    //converting text content of item on which delete button is clicked into an anrray to get key i.e.,email
+    let li=e.target.parentElement.textContent.split(' ')[1];
+    //removing item from local storage using key
+    localStorage.removeItem(li);
+    
+    
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you Sure ?')){
+            let li=e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+    
+    //let delemail=document.getElementById('email').value
 }
 
 
