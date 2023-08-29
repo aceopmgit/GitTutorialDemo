@@ -8,6 +8,11 @@ function submitUser(e){
     
     //Creating element li
     const li=document.createElement('li');
+    //creating span element to store name,email,phone
+    const spanName=document.createElement('span');
+    const spanEmail=document.createElement('span');
+    const spanPhone=document.createElement('span');
+    
     
     //Adding class to li
     li.className='list-group-item'
@@ -21,16 +26,29 @@ function submitUser(e){
     //First method is in Item lister Dom    
     
     //Adding TextNode to li
-    li.appendChild(document.createTextNode(tName));
-    li.appendChild(document.createTextNode(" "+tEmail));
-    li.appendChild(document.createTextNode(" "+tPhone+" "));
+    //li.appendChild(document.createTextNode(tName));
+    //li.appendChild(document.createTextNode(" "+tEmail));
+    //li.appendChild(document.createTextNode(" "+tPhone+" "));
+
+    //Adding TextNode to span elements
+    spanName.appendChild(document.createTextNode(tName));
+    spanEmail.appendChild(document.createTextNode(tEmail));
+    spanPhone.appendChild(document.createTextNode(tPhone));
+
+    //Adding class to span element
+    spanName.className='name'
+    spanEmail.className='email'
+    spanPhone.className='phone'
+
+    //Adding span Element to li Node
+    li.append(spanName," ",spanEmail," ",spanPhone);
 
     //creating delete button element
     const delbtn=document.createElement('button');
     //creating edit button element
     const editbtn=document.createElement('button');
     
-    //adding class to button
+    //adding class to delete button
     delbtn.className='btn btn-sm float-right delete'
     delbtn.style.backgroundColor='Tomato'
 
@@ -60,8 +78,8 @@ function submitUser(e){
         Phone:tPhone
 
     }
-    const details_serialised=JSON.stringify(details)
-    localStorage.setItem(tEmail,details_serialised);
+    
+    localStorage.setItem(details.Email,JSON.stringify(details));
     //console.log(localStorage)
 
     
@@ -69,20 +87,24 @@ function submitUser(e){
 }
 
 function removeInfo(e){
-        
+     
+    //code for delete button
     if(e.target.classList.contains('delete')){
         if(confirm('Are you Sure ?')){
             let li=e.target.parentElement;
-            itemList.removeChild(li);
+            itemList.removeChild(li)
+
+            console.log(li)
+            ///itemList.removeChild(li);
         }
-        const li=e.target.parentElement.textContent.split(' ')[1];
+        const li=e.target.parentElement.getElementsByClassName('email')[0].textContent;
         //removing item from local storage using key
         console.log(li)
         localStorage.removeItem(li);
     }
     // Code For Edit Button
     if(e.target.classList.contains('edit')){
-        let li=e.target.parentElement.textContent.split(' ')[1];
+        let li=e.target.parentElement.getElementsByClassName('email')[0].textContent;
         let editinfo=JSON.parse(localStorage.getItem(li));
         //console.log(editinfo.Name)
 
