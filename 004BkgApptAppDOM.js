@@ -78,13 +78,19 @@ function submitUser(e){
         Phone:tPhone
 
     }
+    axios.post('https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData',details)
+    .then((res)=>{
+        console.log(res)
+    }).catch((err)=>{console.error(err)})
     
-    localStorage.setItem(details.Email,JSON.stringify(details));
+    //localStorage.setItem(details.Email,JSON.stringify(details));
     //console.log(localStorage)
 
     
 
 }
+
+
 
 function removeInfo(e){
      
