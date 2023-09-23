@@ -6,6 +6,33 @@ itemList.addEventListener('click',removeInfo)
 function submitUser(e){
     e.preventDefault()
     
+        
+    //getting input values
+    const tName=document.getElementById('name').value
+    const tEmail=document.getElementById('email').value
+    const tPhone=document.getElementById('phone').value
+     
+    
+    const details={
+        Name:tName,
+        Email:tEmail,
+        Phone:tPhone
+
+    }
+    //Storing data to crudcrud
+    axios.post('https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData',details)
+    .then((res)=>{
+        console.log(res)
+    }).catch((err)=>{console.error(err)})
+
+    showData(details)
+    
+    //localStorage.setItem(details.Email,JSON.stringify(details));
+    //console.log(localStorage)    
+
+}
+
+function showData(obj){
     //Creating element li
     const li=document.createElement('li');
     //creating span element to store name,email,phone
@@ -16,12 +43,7 @@ function submitUser(e){
     
     //Adding class to li
     li.className='list-group-item'
-    
-    //getting input values
-    const tName=document.getElementById('name').value
-    const tEmail=document.getElementById('email').value
-    const tPhone=document.getElementById('phone').value
-     
+
     //Second Method of combining input values
     //First method is in Item lister Dom    
     
@@ -31,9 +53,9 @@ function submitUser(e){
     //li.appendChild(document.createTextNode(" "+tPhone+" "));
 
     //Adding TextNode to span elements
-    spanName.appendChild(document.createTextNode(tName));
-    spanEmail.appendChild(document.createTextNode(tEmail));
-    spanPhone.appendChild(document.createTextNode(tPhone));
+    spanName.appendChild(document.createTextNode(obj.Name));
+    spanEmail.appendChild(document.createTextNode(obj.Email));
+    spanPhone.appendChild(document.createTextNode(obj.Phone));
 
     //Adding class to span element
     spanName.className='name'
@@ -72,23 +94,24 @@ function submitUser(e){
     //Adding li to itemList
     itemList.appendChild(li);
 
-    const details={
-        Name:tName,
-        Email:tEmail,
-        Phone:tPhone
-
-    }
-    axios.post('https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData',details)
-    .then((res)=>{
-        console.log(res)
-    }).catch((err)=>{console.error(err)})
-    
-    //localStorage.setItem(details.Email,JSON.stringify(details));
-    //console.log(localStorage)
-
-    
 
 }
+//Code for showing data on screen when page is refreshed
+window.addEventListener("DOMContentLoaded",()=>{
+    const data=axios.get("https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData")
+         .then((res)=>{
+           // console.log(res);
+            for(let i=0;i<res.data.length;i++){
+                showData(res.data[i])
+            }
+         })
+         .catch((err)=>{
+            console.error(err)
+         })
+        console.log(data)  //this will not give data inside 'data' but will print promise.
+        //the data inside can only be printed inside .then because axios.get is an asynchronos call 
+        //which returns a promise and console.log() is a synchronos call and thus gets printed before promise gets fullfilled
+})
 
 
 
