@@ -39,6 +39,7 @@ function showData(obj){
     const spanName=document.createElement('span');
     const spanEmail=document.createElement('span');
     const spanPhone=document.createElement('span');
+    const spanId=document.createElement('span')
     
     
     //Adding class to li
@@ -56,14 +57,21 @@ function showData(obj){
     spanName.appendChild(document.createTextNode(obj.Name));
     spanEmail.appendChild(document.createTextNode(obj.Email));
     spanPhone.appendChild(document.createTextNode(obj.Phone));
+    spanId.appendChild(document.createTextNode(obj._id))
 
     //Adding class to span element
     spanName.className='name'
     spanEmail.className='email'
     spanPhone.className='phone'
 
+
+    //Making the id invisible
+    spanId.className='id'
+    spanId.style.display='none'
+    
+
     //Adding span Element to li Node
-    li.append(spanName," ",spanEmail," ",spanPhone);
+    li.append(spanName," ",spanEmail," ",spanPhone," ",spanId);
 
     //creating delete button element
     const delbtn=document.createElement('button');
@@ -101,6 +109,7 @@ window.addEventListener("DOMContentLoaded",()=>{
     const data=axios.get("https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData")
          .then((res)=>{
            // console.log(res);
+           console.log(res)
             for(let i=0;i<res.data.length;i++){
                 showData(res.data[i])
             }
@@ -123,13 +132,14 @@ function removeInfo(e){
             let li=e.target.parentElement;
             itemList.removeChild(li)
 
-            console.log(li)
+            //console.log(li)
             ///itemList.removeChild(li);
         }
-        const li=e.target.parentElement.getElementsByClassName('email')[0].textContent;
+        const li=e.target.parentElement.getElementsByClassName('id')[0].textContent;
         //removing item from local storage using key
         console.log(li)
-        localStorage.removeItem(li);
+        axios.delete(`https://crudcrud.com/api/7e6285a2be5249bb93067d4d474f77d6/appointmentData/${li}`)
+        //localStorage.removeItem(li);
     }
     // Code For Edit Button
     if(e.target.classList.contains('edit')){
