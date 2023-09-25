@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="card-header" style="background-color:aliceblue">Add To-Do</h2>
+            <div class="card-body">
+                
+                <form id="form1" >
+                    <div>
+                        <label for="name" class="form-label">To-Do Name</label>
+                        <input type="text" id="name" class="form-comtrol">
+
+                        <label for="desc" class="form-label">Description</label>
+                        <input type="text" id="desc" class="form-comtrol">
+
+                        <button class="btn btn-primary" id="button">Submit</button>
+                        
+
+
+                    </div>
+                    
+                </form>
+
+                
+                
+            </div>
+        </div>
+        <div class="card">
+            <h2 class="card-header" style="background-color:aliceblue">To-Do Remaining</h2>
+            <div class="card-body">
+                
+                <form id="form2" >
+                    <div>
+                        <ul id="itemsRem" class="list-group">
+
+                        </ul>
+                    </div>
+                    
+                </form>
+
+                
+                
+            </div>
+        </div>
+        <div class="card">
+            <h2 class="card-header" style="background-color:aliceblue">To-Do Done</h2>
+            <div class="card-body">
+                
+                <form id="form3" >
+                    <div>
+                        <ul id="itemsDone" class="list-group">
+
+                        </ul>
+                    </div>
+                    
+                </form>
+
+                
+                
+            </div>
+        </div>
+
+    </div>
+    <script src="012TodoList.js"></script>
+    
+</body>
+</html>
