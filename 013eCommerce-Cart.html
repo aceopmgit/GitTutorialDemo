@@ -28,8 +28,18 @@
                                 
                             </ul>
                             <br>
-                            <label for="total"><b>Total value worth of products :</b> Rs</label>                            
+                            <!--
+                                First Method inserting input box and label
+                                and making the input field behave as plain text
+                                <label for="total"><b>Total value worth of products :</b> Rs</label>                            
                             <input type="Number" name="total" id="total" disabled="disabled" style="border:none;background:transparent;color:#000 " value="0" >
+
+                            -->
+                            <!--
+                                Second Method using p and span
+                            -->
+                            <p><b>Total value worth of products</b> :Rs <span id="amount">0</span> </p>
+                            
                         </div>
                         
     
@@ -38,7 +48,7 @@
             </div>
         </div>
     </div>
-    <script src="013eCommerce-Cart-DOMU-UsingCrudCrud.js"></script>
+    <script src="013eCommerce-Cart-DOM-UsingCrudCrud.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
     
 </body>
