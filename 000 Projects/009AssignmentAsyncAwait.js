@@ -17,7 +17,7 @@ const premovie=async ()=> {
     console.log(`wife:I got the ${ticket}`)
     console.log('husband:we should go in')
     console.log('wife:no I am hungary')
-
+    
     let popcorn=await getPopcorn;
     console.log(`husband:I got some ${popcorn}`)
     console.log('husband:we should go in')
