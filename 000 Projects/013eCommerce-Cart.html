@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocumeEnt</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card--header" style="background-color: aquamarine;">Add Product</div>
+            <div class="card-body">
+                
+                    <div>
+                        <label for="price">Selling Price</label>
+                        <input type="Numaber" id="price">
+    
+                        <label for="name">Product name</label>
+                        <input type="text" id="name">
+    
+                        <button class="btn btn-primary" id="button">Add Product</button>
+                        <br>
+                        <br><h3>Products</h3>
+    
+                        <div>
+                            <ul id="itemDetails" class="list-group">
+                                
+                            </ul>
+                            <br>
+                            <!--
+                                First Method inserting input box and label
+                                and making the input field behave as plain text
+                                <label for="total"><b>Total value worth of products :</b> Rs</label>                            
+                            <input type="Number" name="total" id="total" disabled="disabled" style="border:none;background:transparent;color:#000 " value="0" >
+
+                            -->
+                            <!--
+                                Second Method using p and span
+                            -->
+                            <p><b>Total value worth of products</b> :Rs <span id="amount">0</span> </p>
+                            
+                        </div>
+                        
+    
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="013eCommerce-Cart-DOM-UsingCrudCrud.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    
+</body>
+</html>

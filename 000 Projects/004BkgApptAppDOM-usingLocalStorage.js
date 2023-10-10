@@ -2,18 +2,17 @@ const button=document.getElementById('button')
 button.addEventListener('click',submitUser)
 const itemList=document.getElementById('items')
 itemList.addEventListener('click',removeInfo)
-
 function submitUser(e){
     e.preventDefault()
-    
+
     //Creating element li
     const li=document.createElement('li');
     //creating span element to store name,email,phone
     const spanName=document.createElement('span');
     const spanEmail=document.createElement('span');
     const spanPhone=document.createElement('span');
-    
-    
+
+
     //Adding class to li
     li.className='list-group-item'
     
@@ -24,7 +23,7 @@ function submitUser(e){
      
     //Second Method of combining input values
     //First method is in Item lister Dom    
-    
+
     //Adding TextNode to li
     //li.appendChild(document.createTextNode(tName));
     //li.appendChild(document.createTextNode(" "+tEmail));
@@ -47,7 +46,7 @@ function submitUser(e){
     const delbtn=document.createElement('button');
     //creating edit button element
     const editbtn=document.createElement('button');
-    
+
     //adding class to delete button
     delbtn.className='btn btn-sm float-right delete'
     delbtn.style.backgroundColor='Tomato'
@@ -56,38 +55,32 @@ function submitUser(e){
     editbtn.className='btn btn-sm float-right edit'
     editbtn.style.backgroundColor='#ADD8E6'
     
-
     //Adding textNode to delete button
     delbtn.appendChild(document.createTextNode('Delete'));
-
     //adding text node to Edit button
     editbtn.appendChild(document.createTextNode('Edit'));
-
     //Adding delete button to li
     li.appendChild(delbtn);
-
     //Adding edit button to li
     li.appendChild(editbtn)
-
     //Adding li to itemList
     itemList.appendChild(li);
-
     const details={
         Name:tName,
         Email:tEmail,
         Phone:tPhone
 
     }
-    
+
     localStorage.setItem(details.Email,JSON.stringify(details));
     //console.log(localStorage)
 
-    
+
 
 }
 
 function removeInfo(e){
-     
+
     //code for delete button
     if(e.target.classList.contains('delete')){
         if(confirm('Are you Sure ?')){
@@ -116,16 +109,8 @@ function removeInfo(e){
         document.getElementById('email').value=editinfo.Email
         document.getElementById('phone').value=editinfo.Phone
         
-
-
     }
-
-
     
     //let delemail=document.getElementById('email').value
 }
-
-
 //this form some functionalities not added  watch the video from 1:30:00 --> https://www.youtube.com/watch?v=hdI2bqOjy3c
-
-
