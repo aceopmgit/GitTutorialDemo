@@ -15,7 +15,7 @@ function submitDetails(e){
         Name:name
     }
 
-    axios.post('https://crudcrud.com/api/b6f343ba58de434b95107d1c49b4d426/cartDetails',details)
+    axios.post('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails',details)
          .then((res)=>{showDetails(res.data)})
          .catch((err)=>{console.error(err)})
 
@@ -67,7 +67,7 @@ function showDetails(obj){
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
-    const data=axios.get('https://crudcrud.com/api/b6f343ba58de434b95107d1c49b4d426/cartDetails')
+    const data=axios.get('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails')
          .then((res)=>{
             for(let i=0;i<res.data.length;i++){
                 showDetails(res.data[i]);
@@ -91,7 +91,7 @@ function removeDetails(e){
         console.log(id)
 
         //deleting the item from crud crud server
-        axios.delete(`https://crudcrud.com/api/b6f343ba58de434b95107d1c49b4d426/cartDetails/${id}`)
+        axios.delete(`https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails/${id}`)
             .then().catch((err)=>{console.error(err)})
 
         const total=Number(document.getElementById('amount').textContent)-Number(price)
