@@ -58,7 +58,7 @@ create2ndPost().then(()=>{
 })
 */
 
-
+/*
 create2ndPost().then(()=>{
     deletePost().then((dpost)=>{
         console.log(dpost.title)
@@ -80,7 +80,7 @@ create2ndPost().then(()=>{
         })
     })
 })
-
+*/
 
 
 /*
@@ -107,5 +107,23 @@ async function process(){
 process()
 
 */
+create2ndPost().then(function(){
+  deletePost().then(function(dpost){
+    console.log(dpost.title);
+    create3rPost().then(function(){
+      deletePost().then(function(dpost){
+        console.log(dpost.title)
+        deletePost().then(function(dpost){
+          console.log(dpost.title);
+          deletePost().catch(function(err){
+            console.log(err)
+          })
+        })
+        
+      })
+    })
+  })
+})
+
 
 
