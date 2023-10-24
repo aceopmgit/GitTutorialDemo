@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="Container">
+        <div class="card">
+            
+            <div class="card-body">
+                <div class="card-header" style="background-color:burlywood">Add Food</div>
+                <br>
+                <div>
+                    <label for="Name"> Food Name</label>
+                    <input type="text" id="name">
+                    <label for="Quantity">Quantity</label>
+                    <input type="Number" id="quant">
+                    <label for="Payment">Payment Mode</label>
+                    <select name="Payment" id="pay">
+                        <option value="upi">UPI</option>
+                        <option value="Bank">Online Banking</option>
+                        <option value="cash">Cash</option>
+                        <option value="card">Debit/Credit Card</option>
+                    </select>
+                    <button class="btn btn-succes" id="add">Add</button><br>
+
+                    <div>
+                        <br><br>
+                        <h5>Bill Details</h5>
+                        <ul id="items" class="list-group">
+
+                        </ul>
+                        <br>
+                        <h6 style="Text-align:right">Total :Rs. <span id="total">/-</span></h6>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="014FoodCart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    
+</body>
+</html>

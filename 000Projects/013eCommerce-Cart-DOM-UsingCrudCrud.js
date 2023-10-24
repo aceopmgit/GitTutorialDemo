@@ -4,20 +4,32 @@ const itemDetails=document.getElementById('itemDetails')
 itemDetails.addEventListener('click',removeDetails);
 
 function submitDetails(e){
-    e.preventDefault();
+    //e.preventDefault();
 
     //Getting the value from input 
     const price=document.getElementById('price').value;
     const name=document.getElementById('name').value;
+    console.log(price);
 
     const details={
         Price:price,
         Name:name
     }
-
-    axios.post('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails',details)
-         .then((res)=>{showDetails(res.data)})
-         .catch((err)=>{console.error(err)})
+    
+    
+    async function postDetails(){
+            try{
+                let res=await axios.post('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails',details)
+                showDetails(res.data);
+                //console.log(res);
+            }
+            catch(err){
+                console.log(err);
+            }
+            
+    
+        }
+        postDetails();     
 
 
 /*
@@ -66,14 +78,18 @@ function showDetails(obj){
 
 }
 
-window.addEventListener("DOMContentLoaded",()=>{
-    const data=axios.get('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails')
-         .then((res)=>{
+window.addEventListener("DOMContentLoaded",async()=>{
+ 
+
+         try{
+            const res= await axios.get('https://crudcrud.com/api/f3cd011d0b5348bcb36f187bda35eca4/cartDetails')
             for(let i=0;i<res.data.length;i++){
                 showDetails(res.data[i]);
             }
-         })
-         .catch((err)=>{console.error(err)})
+    
+        } catch(err){
+            console.log(err)
+        }
 })
 
 function removeDetails(e){
