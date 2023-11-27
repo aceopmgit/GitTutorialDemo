@@ -12,7 +12,7 @@ function create3rdPost() {
     return new Promise( (resolve, reject) => {
         setTimeout( () => {
             posts.push({title: 'post Three'});
-            //resolve();
+            resolve();
         }, 3000)
     }) 
 }

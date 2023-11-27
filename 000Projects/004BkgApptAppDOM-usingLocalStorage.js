@@ -1,116 +1,110 @@
-const button=document.getElementById('button')
-button.addEventListener('click',submitUser)
-const itemList=document.getElementById('items')
-itemList.addEventListener('click',removeInfo)
+const button=document.getElementById('button');
+button.addEventListener('click',submitUser);
+
+const items=document.getElementById('items');
+items.addEventListener('click',updateInfo);
+
+const filter=document.getElementById('filter');
+filter.addEventListener('keyup',searchUser);
+
+
 function submitUser(e){
-    e.preventDefault()
+    e.preventDefault();
+    //console.log('hello')
+    const name=document.getElementById('name').value;
+    const email=document.getElementById('email').value;
+    const phone=document.getElementById('phone').value;
 
-    //Creating element li
-    const li=document.createElement('li');
-    //creating span element to store name,email,phone
-    const spanName=document.createElement('span');
-    const spanEmail=document.createElement('span');
-    const spanPhone=document.createElement('span');
-
-
-    //Adding class to li
-    li.className='list-group-item'
-    
-    //getting input values
-    const tName=document.getElementById('name').value
-    const tEmail=document.getElementById('email').value
-    const tPhone=document.getElementById('phone').value
-     
-    //Second Method of combining input values
-    //First method is in Item lister Dom    
-
-    //Adding TextNode to li
-    //li.appendChild(document.createTextNode(tName));
-    //li.appendChild(document.createTextNode(" "+tEmail));
-    //li.appendChild(document.createTextNode(" "+tPhone+" "));
-
-    //Adding TextNode to span elements
-    spanName.appendChild(document.createTextNode(tName));
-    spanEmail.appendChild(document.createTextNode(tEmail));
-    spanPhone.appendChild(document.createTextNode(tPhone));
-
-    //Adding class to span element
-    spanName.className='name'
-    spanEmail.className='email'
-    spanPhone.className='phone'
-
-    //Adding span Element to li Node
-    li.append(spanName," ",spanEmail," ",spanPhone);
-
-    //creating delete button element
-    const delbtn=document.createElement('button');
-    //creating edit button element
-    const editbtn=document.createElement('button');
-
-    //adding class to delete button
-    delbtn.className='btn btn-sm float-right delete'
-    delbtn.style.backgroundColor='Tomato'
-
-    //Adding class and style to Edit Button
-    editbtn.className='btn btn-sm float-right edit'
-    editbtn.style.backgroundColor='#ADD8E6'
-    
-    //Adding textNode to delete button
-    delbtn.appendChild(document.createTextNode('Delete'));
-    //adding text node to Edit button
-    editbtn.appendChild(document.createTextNode('Edit'));
-    //Adding delete button to li
-    li.appendChild(delbtn);
-    //Adding edit button to li
-    li.appendChild(editbtn)
-    //Adding li to itemList
-    itemList.appendChild(li);
     const details={
-        Name:tName,
-        Email:tEmail,
-        Phone:tPhone
-
+        Name:name,
+        Email:email,
+        Phone:phone
     }
-
     localStorage.setItem(details.Email,JSON.stringify(details));
-    //console.log(localStorage)
 
-
-
+    showDetails(details);
 }
 
-function removeInfo(e){
 
-    //code for delete button
-    if(e.target.classList.contains('delete')){
-        if(confirm('Are you Sure ?')){
-            let li=e.target.parentElement;
-            itemList.removeChild(li)
 
-            console.log(li)
-            ///itemList.removeChild(li);
-        }
-        const li=e.target.parentElement.getElementsByClassName('email')[0].textContent;
-        //removing item from local storage using key
-        console.log(li)
-        localStorage.removeItem(li);
-    }
-    // Code For Edit Button
-    if(e.target.classList.contains('edit')){
-        let li=e.target.parentElement.getElementsByClassName('email')[0].textContent;
-        let editinfo=JSON.parse(localStorage.getItem(li));
-        //console.log(editinfo.Name)
+function showDetails(obj){
+    //const sname=document.createElement('span');    
+    //const sphone=document.createElement('span');
 
-        localStorage.removeItem(li);
-        let li1=e.target.parentElement;
-        itemList.removeChild(li1);
-        
-        document.getElementById('name').value=editinfo.Name
-        document.getElementById('email').value=editinfo.Email
-        document.getElementById('phone').value=editinfo.Phone
-        
-    }
+    //creating span element for email;
+    const semail=document.createElement('span');
+    semail.className='email';
+    semail.style.display='none';
+    semail.appendChild(document.createTextNode(obj.Email));
+
+    //creating delete button;
+    const deletBtn=document.createElement('button');
+    deletBtn.className='btn btn-danger float-right delete';
+    deletBtn.appendChild(document.createTextNode('Delete'));
+
+    //creating edit button
+    const editBtn=document.createElement('button');
+    editBtn.className='btn btn-primary float-right edit';
+    editBtn.appendChild(document.createTextNode('Edit'));
+
+
     
-    //let delemail=document.getElementById('email').value
+    //creating li element
+    const li=document.createElement('li');
+    li.className='list-group-item'
+    li.appendChild(document.createTextNode(obj.Name));
+    li.append(" ",obj.Phone,semail,deletBtn,editBtn);
+
+    //Adding li to ul tag
+    items.appendChild(li); 
 }
-//this form some functionalities not added  watch the video from 1:30:00 --> https://www.youtube.com/watch?v=hdI2bqOjy3c
+
+
+
+function updateInfo(e){
+
+    //Adding Delete Functionality
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure ?')){
+            const li=e.target.parentElement;
+            items.removeChild(li)
+        }
+
+        const key=e.target.parentElement.getElementsByClassName('email')[0].textContent;
+        localStorage.removeItem(key);
+        //console.log(e.target.parentElement.firstChild.textContent)
+    }
+
+    //Adding Edit functionality
+    if(e.target.classList.contains('edit')){
+        const key=e.target.parentElement.getElementsByClassName('email')[0].textContent;
+        const data=JSON.parse(localStorage.getItem(key));
+
+        localStorage.removeItem(key);
+        const li=e.target.parentElement;
+        items.removeChild(li);
+
+        document.getElementById('name').value=data.Name;
+        document.getElementById('phone').value=data.Phone;
+        document.getElementById('email').value=data.Email;
+    }
+}
+
+function searchUser(e){
+    const text=e.target.value.toLowerCase()
+
+    const li=items.getElementsByTagName('li');
+
+    Array.from(li).forEach((li)=>{
+        const listName=li.firstChild.textContent;
+
+        if(listName.toLowerCase().indexOf(text) !=-1){
+            li.style.display='block';
+        }
+        else{
+            li.style.display='none';
+        }
+        
+    })
+
+}
